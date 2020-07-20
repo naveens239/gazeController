@@ -1,6 +1,6 @@
-# Computer Pointer Controller
+# Computer Pointer Controller - Overview
 
-*TODO:* Write a short introduction to your project
+This is an application that uses a face, humanpose and gaze detection models to control the mouse cursor using an input video file.
 
 ## Project Set Up and Installation
 To set up the project, install the OpenVino toolkit in your desktop.
@@ -36,8 +36,8 @@ Run the below command to get the execution going.
 
 python src\main.py -fdm <\location to the model>\face-detection-adas-binary-0001\FP32-INT1\face-detection-adas-binary-0001.xml -lmm <\location to the model>\landmarks-regression-retail-0009\FP16\landmarks-regression-retail-0009.xml -gem <\location to the model>\gaze-estimation-adas-0002\FP16\gaze-estimation-adas-0002.xml -hpm <\location to the model>\head-pose-estimation-adas-0001\FP16\head-pose-estimation-adas-0001.xml -i bin\demo.mpg -d CPU
 
-## Documentation
-*TODO:* Include any documentation that users might need to better understand your project code. For instance, this is a good place to explain the command line arguments that your project supports.
+## Argument explanation
+
 -fdm Provide the location to the face detection model .xml file
 -lmm Provide the location to the Landmarks regression model .xml file
 -hpm Provide the location to the Human pose estimation model .xml file
