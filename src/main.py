@@ -40,10 +40,6 @@ from head_pose_estimation import HeadPoseEstimation
 from gaze_estimation import GazeEstimation 
 from mouse_controller import MouseController
 
-#import _thread
-
-
-
 def build_argparser():
     """
     Parse command line arguments.
