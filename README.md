@@ -13,19 +13,19 @@ Run the requirements.txt file with this command - pip install -r requirements.tx
 Download the models using the model downloader into separate folders.
 For this project we need the below mentioned models.
 
-###Face Detection Model
+##Face Detection Model
 
 python downloader.py –-name face-detection-adas-binary-0001 -o  <\destination location address>
 
-###Landmarks Regression Model
+##Landmarks Regression Model
 
 python downloader.py –-name landmarks-regression-retail-0009 -o  <\destination location address>
 
-###Human Pose Estimation Model
+##Human Pose Estimation Model
 
 python downloader.py –-name head-pose-estimation-adas-0001 -o  <\destination location address>
 
-###Gaze Estimation Model
+##Gaze Estimation Model
 
 python downloader.py –-name gaze-estimation-adas-0002 -o  <\destination location address>
 
@@ -54,8 +54,11 @@ and run the ffmpeg-download file with powershell
 
 ============== Models Load time ===============
 Face Detection Model: 689.6ms
+
 Facial Landmarks Detection Model: 276.3ms
+
 Headpose Estimation Model: 209.4ms
+
 Gaze Estimation Model: 226.4ms
 
 ## Results
