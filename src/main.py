@@ -154,11 +154,13 @@ def infer_on_stream(args):
             #print(int((frame_count) % int(FPS)))
             
             # face detection
+            fd_process_time = time.time()
             p_frame = fdnet.preprocess_input(frame)
             start_time = time.time()
             fnoutput = fdnet.predict(p_frame)
             fd_infertime += time.time() - start_time
             out_frame,fboxes = fdnet.preprocess_output(fnoutput,frame,args.print)
+            logging.info("Face Detection Model processing time : {:.1f}ms".format(1000 * (time.time() - fd_process_time)) )
             
             #for each face
             for fbox in fboxes:
@@ -167,26 +169,31 @@ def infer_on_stream(args):
                 # get face landmarks
                 # crop face from frame
                 face = frame[fbox[1]:fbox[3],fbox[0]:fbox[2]]
+                lm_process_time = time.time()
                 p_frame = lmnet.preprocess_input(face)
-                
                 start_time = time.time()
                 lmoutput = lmnet.predict(p_frame)
                 lm_infertime += time.time() - start_time
                 out_frame,left_eye_point,right_eye_point = lmnet.preprocess_output(lmoutput, fbox, out_frame,args.print)
+                logging.info("Landmarks model processing time : {:.1f}ms".format(1000 * (time.time() - lm_process_time)) )
 
                 # get head pose estimation
+                hp_process_time = time.time()
                 p_frame  = hpnet.preprocess_input(face)
                 start_time = time.time()
                 hpoutput = hpnet.predict(p_frame)
                 hp_infertime += time.time() - start_time
                 out_frame, headpose_angels = hpnet.preprocess_output(hpoutput,out_frame, face,fbox,args.print)
+                logging.info("Headpose estimation model processing time : {:.1f}ms".format(1000 * (time.time() - hp_process_time)) )
 
                 # get gaze  estimation
+                gaze_process_time = time.time()
                 out_frame, left_eye, right_eye  = genet.preprocess_input(out_frame,face,left_eye_point,right_eye_point,args.print)
                 start_time = time.time()
                 geoutput = genet.predict(left_eye, right_eye, headpose_angels)
                 ge_infertime += time.time() - start_time
                 out_frame, gazevector = genet.preprocess_output(geoutput,out_frame,fbox, left_eye_point,right_eye_point,args.print)
+                logging.info("Gaze estimation model processing time : {:.1f}ms".format(1000 * (time.time() - gaze_process_time)) )
 
                 if(not args.no_video):
                     cv2.imshow('im', out_frame)
