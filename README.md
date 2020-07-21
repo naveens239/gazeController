@@ -48,8 +48,9 @@ python src\main.py -fdm <\location to the model>\face-detection-adas-binary-0001
 If the error rises about incompatible extension, go to the location - C:\Program Files (x86)\IntelSWTools\openvino\opencv 
 and run the ffmpeg-download file with powershell
 
+##Directory Structure
 
-## Observed Values
+## Observed Benchamark Values
 
 This was run on FP16 for all model except face detection model.
 
@@ -77,14 +78,10 @@ Gaze Estimation Model           ||       322.1ms     ||       10.0ms            
 
 
 ## Results
-From the above results we can see that FP16 performs faster than FP32. This was run on CPU device. Although load time appears almost same, the processing time and the inference time taken is better for FP16.
-
-
-## Stand Out Suggestions
-This is where you can provide information about the stand out suggestions that you have attempted.
+From the above results we can see that FP16 performs faster than FP32. This was run on CPU device. Although load time appears almost same, the processing time and the inference time taken is better for FP16. The accuracy was also good as the mouse pointer moved around faster when using FP16. 
 
 ### Async Inference
 If you have used Async Inference in your code, benchmark the results and explain its effects on power and performance of your project.
 
 ### Edge Cases
-There will be certain situations that will break your inference flow. For instance, lighting changes or multiple people in the frame. Explain some of the edge cases you encountered in your project and how you solved them to make your project more robust.
+Since we have only 1 person in the video, considered the first face image only and did all subsequent inferences on the same image only.
