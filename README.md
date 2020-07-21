@@ -13,24 +13,24 @@ Run the requirements.txt file with this command - pip install -r requirements.tx
 Download the models using the model downloader into separate folders.
 For this project we need the below mentioned models.
 
-##Face Detection Model
+## Face Detection Model
 
 python downloader.py –-name face-detection-adas-binary-0001 -o  <\destination location address>
 
-##Landmarks Regression Model
+## Landmarks Regression Model
 
 python downloader.py –-name landmarks-regression-retail-0009 -o  <\destination location address>
 
-##Human Pose Estimation Model
+## Human Pose Estimation Model
 
 python downloader.py –-name head-pose-estimation-adas-0001 -o  <\destination location address>
 
-##Gaze Estimation Model
+## Gaze Estimation Model
 
 python downloader.py –-name gaze-estimation-adas-0002 -o  <\destination location address>
 
 
-## Demo
+## Running the Demo
 After the necessary models are downloaded and environment is ready, ensure the demo.mp4 video is there in the bin folder. This is the video we are going to use here for the demo.
 Run the below command to get the execution going.
 
@@ -48,10 +48,10 @@ python src\main.py -fdm <\location to the model>\face-detection-adas-binary-0001
 If the error rises about incompatible extension, go to the location - C:\Program Files (x86)\IntelSWTools\openvino\opencv 
 and run the ffmpeg-download file with powershell
 
-##Directory Structure
+## Directory Structure
+
 
 ## Observed Benchamark Values
-
 
 This was run on FP16 for all model except face detection model.
 
@@ -69,7 +69,6 @@ This was run on FP16 for all model except face detection model.
 |Facial Landmarks Model          |       411.9ms     |       3.0ms               |     2.5ms           |                        
 |Headpose Estimation Model       |       321.1ms     |       11.0ms              |     10.0ms          |
 |Gaze Estimation Model           |       322.1ms     |       10.0ms              |     11.5ms          |
-
 
 ## Results
 From the above results we can see that FP16 performs faster than FP32. This was run on CPU device. Although load time appears almost same, the processing time and the inference time taken is better for FP16. The accuracy was also good as the mouse pointer moved around faster when using FP16. 
