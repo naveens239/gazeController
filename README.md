@@ -50,6 +50,17 @@ and run the ffmpeg-download file with powershell
 
 ## Directory Structure
 
+1. bin folder has the demo.mp4 file which will be used for running the project
+2. src folder consists of
+	- face_detection.py which helps to preprocess, predict and detect the face and process the output detected image
+	- facial_landmarks_detection.py helps to detect the eye landmarks and process the output
+	- head_pose_estimation.py helps to detect the movement and position of the head by considering yaw, pitch and roll and process the output
+	- gaze_estimation.py helps to crop the left eye, right eye and process the output
+	- inference.py is where the inference engine is loaded and the async is controlled.
+	- input_feeder.py helps to initialize video return the frames one by one. 
+	- mouse_controller.py helps to take x, y coordinates value, speed, precisions and according these values it moves the mouse pointer by using pyautogui library. (Pyautogui library has to be installed if not installed automatically)
+	- main.py helps to start the project where all the functions are centrally controlled.
+3. venv - This will be the virtual environment where all the required libraries and its corresponding versions are installed.
 
 ## Observed Benchamark Values
 
@@ -73,8 +84,6 @@ This was run on FP16 for all model except face detection model.
 ## Results
 From the above results we can see that FP16 performs faster than FP32. This was run on CPU device. Although load time appears almost same, the processing time and the inference time taken is better for FP16. The accuracy was also good as the mouse pointer moved around faster when using FP16. 
 
-### Async Inference
-If you have used Async Inference in your code, benchmark the results and explain its effects on power and performance of your project.
 
 ### Edge Cases
 Since we have only 1 person in the video, considered the first face image only and did all subsequent inferences on the same image only.
