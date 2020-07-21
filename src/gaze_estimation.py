@@ -20,6 +20,7 @@ class GazeEstimation:
         self.device = device
         self.extensions = extensions
         self.infer_Network = Network()
+        print('initialised Gaze Estimation model')
         #raise NotImplementedError
 
     def load_model(self):

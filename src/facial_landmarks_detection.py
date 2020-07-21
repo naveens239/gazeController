@@ -20,6 +20,7 @@ class FacialLandmarks:
         self.device = device
         self.extensions = extensions
         self.infer_Network = Network()
+        print('initialised Facial Landmarks model')
         #raise NotImplementedError
 
     def load_model(self):

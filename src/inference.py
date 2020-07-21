@@ -51,8 +51,7 @@ class Network:
             self.plugin.add_extension(cpu_extension, device)
 
         # Read the IR as a IENetwork
-        #deprecated on 2020 version
-        #self.network = IENetwork(model=model_xml, weights=model_bin)
+  
         self.network = self.plugin.read_network(model=model_xml, weights=model_bin)
         
         ### TODO: Check for supported layers ###
@@ -71,21 +70,11 @@ class Network:
         # Get the input layer
         self.input_blob = next(iter(self.network.inputs))
         self.output_blob = next(iter(self.network.outputs))
-
-        ### TODO: Return the loaded inference plugin ###
-        ### Note: You may need to update the function parameters. ###
         return
 
     def get_input_shape(self):
         ### TODO: Return the shape of the input layer ###
         return self.network.inputs[self.input_blob].shape
-    
-    # def get_next_input_shape(self, inputindex):
-    #     ### TODO: Return the shape of the input layer ###
-    #     inputiter = iter(self.network.inputs)
-    #     for _ in range(inputindex):
-    #         next(inputiter)
-    #     return self.network.inputs[next(inputiter)].shape
 
     def exec_net(self, input1,input2=None,input3=None):
         ### TODO: Start an asynchronous request ###

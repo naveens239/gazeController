@@ -21,6 +21,7 @@ class HeadPoseEstimation:
         self.extensions = extensions
          # Initialise the class
         self.infer_network = Network()
+        print('initialised head pose Estimation model')
         #raise NotImplementedError
 
     def load_model(self):
