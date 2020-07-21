@@ -53,6 +53,7 @@ and run the ffmpeg-download file with powershell
 *TODO:* Include the benchmark results of running your model on multiple hardwares and multiple model precisions. Your benchmarks can include: model loading time, input/output processing time, model inference time etc.
 
 ============== Models Load time ===============
+
 Face Detection Model: 689.6ms
 
 Facial Landmarks Detection Model: 276.3ms
@@ -61,8 +62,30 @@ Headpose Estimation Model: 209.4ms
 
 Gaze Estimation Model: 226.4ms
 
+============== Model Preprocessing time ==========
+
+Face Detection Model processing time : 66.7ms
+
+Landmarks model processing time : 3.0ms
+
+Headpose estimation model processing time : 8.0ms
+
+Gaze estimation model processing time : 7.0ms
+
+============== Models Inference time ===============
+
+Face Detection:57.7ms
+
+Facial Landmarks Detection:2.2ms
+
+Headpose Estimation:6.4ms
+
+Gaze Estimation:9.2ms
+
+
 ## Results
 *TODO:* Discuss the benchmark results and explain why you are getting the results you are getting. For instance, explain why there is difference in inference time for FP32, FP16 and INT8 models.
+
 
 ## Stand Out Suggestions
 This is where you can provide information about the stand out suggestions that you have attempted.
