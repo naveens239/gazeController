@@ -52,29 +52,23 @@ and run the ffmpeg-download file with powershell
 
 ## Observed Benchamark Values
 
+
 This was run on FP16 for all model except face detection model.
 
-============== Models ================ Load time ========== Processing Time ========Inference Time ================
-                                ||                   ||                           ||                     ||
-Face Detection Model            ||       898.7ms     ||       34.8ms              ||     29.7ms          ||
-                                ||                   ||                           ||                     || 
-Facial Landmarks Model          ||       376.3ms     ||       3.0ms               ||     2.2ms           || 
-                                ||                   ||                           ||                     ||
-Headpose Estimation Model       ||       309.4ms     ||       8.0ms               ||     6.4ms           ||
-                                ||                   ||                           ||                     ||
-Gaze Estimation Model           ||       326.4ms     ||       7.0ms               ||     9.2ms           ||
- ====================================================================================================================
- FP32
-============== Models ================ Load time ========== Processing Time ========Inference Time ================
-                                ||                   ||                           ||                     ||
-Face Detection Model            ||       898.6ms     ||       51.9ms              ||     69.8ms          ||
-                                ||                   ||                           ||                     || 
-Facial Landmarks Model          ||       411.9ms     ||       3.0ms               ||     2.5ms           || 
-                                ||                   ||                           ||                     ||
-Headpose Estimation Model       ||       321.1ms     ||       11.0ms              ||     10.0ms          ||
-                                ||                   ||                           ||                     ||
-Gaze Estimation Model           ||       322.1ms     ||       10.0ms              ||     11.5ms          ||
- ====================================================================================================================
+| Models                |      Load time          | Processing Time    |Inference Time |
+|-------------------    |   -------------------   |-------------------|------------------- |
+|Face Detection Model    |      898.7ms     |        34.8ms           |     29.7ms          |
+|Facial Landmarks Model          |       376.3ms     |      3.0ms     |   2.2ms             |
+|Headpose Estimation Model       |       309.4ms     |      8.0ms     |     6.4ms           |
+|Gaze Estimation Model           |       326.4ms     |       7.0ms    |     9.2ms           |
+
+ FP32 model was used for all
+| Models                |      Load time          | Processing Time    |Inference Time |
+|-------------------    |   -------------------   |-------------------|------------------- |
+|Face Detection Model            |       898.6ms     |       51.9ms              |     69.8ms          |
+|Facial Landmarks Model          |       411.9ms     |       3.0ms               |     2.5ms           |                        
+|Headpose Estimation Model       |       321.1ms     |       11.0ms              |     10.0ms          |
+|Gaze Estimation Model           |       322.1ms     |       10.0ms              |     11.5ms          |
 
 
 ## Results
