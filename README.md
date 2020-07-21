@@ -49,42 +49,35 @@ If the error rises about incompatible extension, go to the location - C:\Program
 and run the ffmpeg-download file with powershell
 
 
-## Benchmarks
-*TODO:* Include the benchmark results of running your model on multiple hardwares and multiple model precisions. Your benchmarks can include: model loading time, input/output processing time, model inference time etc.
+## Observed Values
 
-============== Models Load time ===============
+This was run on FP16 for all model except face detection model.
 
-Face Detection Model: 689.6ms
-
-Facial Landmarks Detection Model: 276.3ms
-
-Headpose Estimation Model: 209.4ms
-
-Gaze Estimation Model: 226.4ms
-
-============== Model Preprocessing time ==========
-
-Face Detection Model processing time : 66.7ms
-
-Landmarks model processing time : 3.0ms
-
-Headpose estimation model processing time : 8.0ms
-
-Gaze estimation model processing time : 7.0ms
-
-============== Models Inference time ===============
-
-Face Detection:57.7ms
-
-Facial Landmarks Detection:2.2ms
-
-Headpose Estimation:6.4ms
-
-Gaze Estimation:9.2ms
+============== Models ================ Load time ========== Processing Time ========Inference Time ================
+                                ||                   ||                           ||                     ||
+Face Detection Model            ||       898.7ms     ||       34.8ms              ||     29.7ms          ||
+                                ||                   ||                           ||                     || 
+Facial Landmarks Model          ||       376.3ms     ||       3.0ms               ||     2.2ms           || 
+                                ||                   ||                           ||                     ||
+Headpose Estimation Model       ||       309.4ms     ||       8.0ms               ||     6.4ms           ||
+                                ||                   ||                           ||                     ||
+Gaze Estimation Model           ||       326.4ms     ||       7.0ms               ||     9.2ms           ||
+ ====================================================================================================================
+ FP32
+============== Models ================ Load time ========== Processing Time ========Inference Time ================
+                                ||                   ||                           ||                     ||
+Face Detection Model            ||       898.6ms     ||       51.9ms              ||     69.8ms          ||
+                                ||                   ||                           ||                     || 
+Facial Landmarks Model          ||       411.9ms     ||       3.0ms               ||     2.5ms           || 
+                                ||                   ||                           ||                     ||
+Headpose Estimation Model       ||       321.1ms     ||       11.0ms              ||     10.0ms          ||
+                                ||                   ||                           ||                     ||
+Gaze Estimation Model           ||       322.1ms     ||       10.0ms              ||     11.5ms          ||
+ ====================================================================================================================
 
 
 ## Results
-*TODO:* Discuss the benchmark results and explain why you are getting the results you are getting. For instance, explain why there is difference in inference time for FP32, FP16 and INT8 models.
+From the above results we can see that FP16 performs faster than FP32. This was run on CPU device. Although load time appears almost same, the processing time and the inference time taken is better for FP16.
 
 
 ## Stand Out Suggestions
