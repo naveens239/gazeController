@@ -34,6 +34,8 @@ python downloader.py –-name gaze-estimation-adas-0002 -o  <\destination locati
 After the necessary models are downloaded and environment is ready, ensure the demo.mp4 video is there in the bin folder. This is the video we are going to use here for the demo.
 Run the below command to get the execution going.
 
+Create and activate the virtual environment by running python -m venv venv and then venv\Scripts\activate on windows
+
 python src\main.py -fdm <\location to the model>\face-detection-adas-binary-0001\FP32-INT1\face-detection-adas-binary-0001.xml -lmm <\location to the model>\landmarks-regression-retail-0009\FP16\landmarks-regression-retail-0009.xml -gem <\location to the model>\gaze-estimation-adas-0002\FP16\gaze-estimation-adas-0002.xml -hpm <\location to the model>\head-pose-estimation-adas-0001\FP16\head-pose-estimation-adas-0001.xml -i bin\demo.mpg -d CPU
 
 ## Argument explanation
