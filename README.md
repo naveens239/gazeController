@@ -38,6 +38,8 @@ Create and activate the virtual environment by running python -m venv venv and t
 
 python src\main.py -fdm <\location to the model>\face-detection-adas-binary-0001\FP32-INT1\face-detection-adas-binary-0001.xml -lmm <\location to the model>\landmarks-regression-retail-0009\FP16\landmarks-regression-retail-0009.xml -gem <\location to the model>\gaze-estimation-adas-0002\FP16\gaze-estimation-adas-0002.xml -hpm <\location to the model>\head-pose-estimation-adas-0001\FP16\head-pose-estimation-adas-0001.xml -i bin\demo.mpg -d CPU
 
+![alt text](https://github.com/naveens239/gazeController/blob/master/directory_struc.PNG?raw=true)
+
 ## Argument explanation
 
 -fdm Provide the location to the face detection model .xml file
