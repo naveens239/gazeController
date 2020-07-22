@@ -50,7 +50,12 @@ class HeadPoseEstimation:
 
 
     def check_model(self):
-        raise NotImplementedError
+        supported_layers = self.core.query_network(network=self.network, device_name=self.device)
+        unsupported_layers = [layer for layer in self.network.layers.keys() if layer not in supported_layers]
+        if len(unsupported_layers) > 0:
+            print("Please check extention for these unsupported layers =>" + str(unsupported_layers))
+            exit(1)
+        print("Head pose estimation layers loaded correctly")
 
     def preprocess_input(self, image):
         '''

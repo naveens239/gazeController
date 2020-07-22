@@ -56,11 +56,7 @@ def build_argparser():
                         help="Path to a gaze estimation xml file with a trained model.")
     parser.add_argument("-i", "--input", required=True, type=str,
                         help="Path video file or CAM to use camera")
-    parser.add_argument("-l", "--cpu_extension", required=False, type=str,
-                        default=None,
-                        help="MKLDNN (CPU)-targeted custom layers."
-                             "Absolute path to a shared library with the"
-                             "kernels impl.")
+    
     parser.add_argument("-d", "--device", type=str, default="CPU",
                         help="Specify the target device to infer on: "
                              "CPU, GPU, FPGA or MYRIAD is acceptable. Sample "
@@ -112,19 +108,23 @@ def infer_on_stream(args):
         start_time = time.time()
         fdnet.load_model()
         logging.info("Face Detection Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
+        fdnet.check_model()
 
         start_time = time.time()
         lmnet.load_model()
         logging.info("Facial Landmarks Detection Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
+        lmnet.check_model()
 
         start_time = time.time()
         hpnet.load_model()
         logging.info("Headpose Estimation Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
+        hpnet.check_model()
 
         start_time = time.time()
         genet.load_model()
         logging.info("Gaze Estimation Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
         logging.info("==============  End =====================") 
+        genet.check_model()
         # Get and open video capture
         feeder = InputFeeder('video', args.input)
         feeder.load_data()
