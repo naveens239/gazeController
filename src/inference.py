@@ -54,15 +54,15 @@ class Network:
   
         self.network = self.plugin.read_network(model=model_xml, weights=model_bin)
         
-        ### TODO: Check for supported layers ###
-        supported_layers = self.plugin.query_network(network=self.network, device_name=device)
-        # Check for any unsupported layers, and let the user
-        # know if anything is missing. Exit the program, if so.
-        unsupported_layers = [l for l in self.network.layers.keys() if l not in supported_layers]
-        if len(unsupported_layers) != 0:
-            print("Unsupported layers found: {}".format(unsupported_layers))
-            print("Check whether extensions are available to add to IECore.")
-            exit(1)
+        # ### TODO: Check for supported layers ###
+        # supported_layers = self.plugin.query_network(network=self.network, device_name=device)
+        # # Check for any unsupported layers, and let the user
+        # # know if anything is missing. Exit the program, if so.
+        # unsupported_layers = [l for l in self.network.layers.keys() if l not in supported_layers]
+        # if len(unsupported_layers) != 0:
+        #     print("Unsupported layers found: {}".format(unsupported_layers))
+        #     print("Check whether extensions are available to add to IECore.")
+        #     exit(1)
 
         # Load the IENetwork into the plugin
         self.exec_network = self.plugin.load_network(self.network, device)

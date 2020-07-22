@@ -2,10 +2,11 @@
 This is a sample class for a model. You may choose to use it as-is or make any changes to it.
 This has been provided just to give you an idea of how to structure your model class.
 '''
-import time
+import time,os
 import cv2
 import numpy as np
 from inference import Network
+from openvino.inference_engine import IENetwork, IECore
 import math
 
 class HeadPoseEstimation:
@@ -16,11 +17,14 @@ class HeadPoseEstimation:
         '''
         TODO: Use this to set your instance variables.
         '''
-        self.model_xml = model_name
-        self.device =  device
+        self.model_xml  = model_name
+        self.device = device
         self.extensions = extensions
-         # Initialise the class
-        self.infer_network = Network()
+        self.infer_Network = Network()
+        self.plugin = IECore()
+        self.model_bin = os.path.splitext(self.model_xml)[0] + ".bin"
+        self.network = self.plugin.read_network(model=self.model_xml, weights=self.model_bin)
+        
         print('initialised head pose Estimation model')
         #raise NotImplementedError
 
@@ -50,12 +54,13 @@ class HeadPoseEstimation:
 
 
     def check_model(self):
-        supported_layers = self.core.query_network(network=self.network, device_name=self.device)
+
+        supported_layers = self.plugin.query_network(network=self.network, device_name=self.device)
         unsupported_layers = [layer for layer in self.network.layers.keys() if layer not in supported_layers]
         if len(unsupported_layers) > 0:
             print("Please check extention for these unsupported layers =>" + str(unsupported_layers))
             exit(1)
-        print("Head pose estimation layers loaded correctly")
+        
 
     def preprocess_input(self, image):
         '''

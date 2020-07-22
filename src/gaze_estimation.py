@@ -2,10 +2,11 @@
 This is a sample class for a model. You may choose to use it as-is or make any changes to it.
 This has been provided just to give you an idea of how to structure your model class.
 '''
-import time
+import time,os
 import cv2
 import numpy as np
 from inference import Network
+from openvino.inference_engine import IENetwork, IECore
 import math
 
 class GazeEstimation:
@@ -20,6 +21,10 @@ class GazeEstimation:
         self.device = device
         self.extensions = extensions
         self.infer_Network = Network()
+        self.plugin = IECore()
+        self.model_bin = os.path.splitext(self.model_xml)[0] + ".bin"
+        self.network = self.plugin.read_network(model=self.model_xml, weights=self.model_bin)
+        
         print('initialised Gaze Estimation model')
         #raise NotImplementedError
 
@@ -51,12 +56,13 @@ class GazeEstimation:
         #raise NotImplementedError
 
     def check_model(self):
-        supported_layers = self.core.query_network(network=self.network, device_name=self.device)
+
+        supported_layers = self.plugin.query_network(network=self.network, device_name=self.device)
         unsupported_layers = [layer for layer in self.network.layers.keys() if layer not in supported_layers]
         if len(unsupported_layers) > 0:
             print("Please check extention for these unsupported layers =>" + str(unsupported_layers))
             exit(1)
-        print("Gaze estimation layers loaded correctly")
+        #logging.Info("Gaze estimation layers loaded correctly")
 
     def preprocess_input(self, frame, face, left_eye_point, right_eye_point, print_flag=True):
         '''

@@ -109,22 +109,27 @@ def infer_on_stream(args):
         fdnet.load_model()
         logging.info("Face Detection Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
         fdnet.check_model()
+        logging.info("Face Detection estimation layers loaded correctly")
 
         start_time = time.time()
         lmnet.load_model()
         logging.info("Facial Landmarks Detection Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
         lmnet.check_model()
+        logging.info("Facial Landmarks estimation layers loaded correctly")
 
         start_time = time.time()
         hpnet.load_model()
         logging.info("Headpose Estimation Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
         hpnet.check_model()
+        logging.info("Head pose estimation layers loaded correctly")
 
         start_time = time.time()
         genet.load_model()
         logging.info("Gaze Estimation Model: {:.1f}ms".format(1000 * (time.time() - start_time)) )
-        logging.info("==============  End =====================") 
+
         genet.check_model()
+        logging.info("Gaze estimation layers loaded correctly")
+        logging.info("==============  End =====================") 
         # Get and open video capture
         feeder = InputFeeder('video', args.input)
         feeder.load_data()
